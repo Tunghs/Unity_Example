@@ -44,7 +44,10 @@ public class Player : MonoBehaviour
             transform.position += moveTo;
         }
 
-        Shoot();
+        if (!GameManager.instance.isGameOver)
+        {
+            Shoot();
+        }
     }
 
     void Shoot()
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
+            GameManager.instance.SetGameOver();
             Destroy(gameObject);
         }
         else if (other.gameObject.tag == "Coin")
