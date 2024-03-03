@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.tag == "Coin")
         {
+            GameManager.instance.IncreaseCoin();
             Destroy(other.gameObject);
         }
     }
