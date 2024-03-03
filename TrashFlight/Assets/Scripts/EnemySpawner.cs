@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
         {
             foreach (float posx in arrPosX)
             {
+                Debug.Log("Created Enemy");
                 SpawnEnemy(posx, enemyIndex, moveSpeed);
             }
 

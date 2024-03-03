@@ -55,4 +55,16 @@ public class Player : MonoBehaviour
             lastShootTime = Time.time;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.tag == "Coin")
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
