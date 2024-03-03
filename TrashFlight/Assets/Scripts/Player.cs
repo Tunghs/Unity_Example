@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
-    private GameObject weapon;
+    private GameObject[] weapons;
+    private int weaponIndex = 0;
     [SerializeField]
     private Transform shootTransform;
     [SerializeField]
@@ -51,14 +52,14 @@ public class Player : MonoBehaviour
         // Interval 설정
         if (Time.time - lastShootTime > shootInterval)
         {
-            Instantiate(weapon, shootTransform.position, Quaternion.identity);
+            Instantiate(weapons[weaponIndex], shootTransform.position, Quaternion.identity);
             lastShootTime = Time.time;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
             Destroy(gameObject);
         }
@@ -66,6 +67,15 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.IncreaseCoin();
             Destroy(other.gameObject);
+        }
+    }
+
+    public void UpgradeWeapon()
+    {
+        weaponIndex += 1;
+        if (weaponIndex >= weapons.Length)
+        {
+            weaponIndex = weapons.Length - 1;
         }
     }
 }
