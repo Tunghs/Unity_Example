@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI text;
     [SerializeField]
     private GameObject gameOverPanel;
+    [SerializeField]
+    private int gameStage = 0;
     private int coin = 0;
 
     // Inspector에서는 숨기기 위한 프로퍼티 설정
